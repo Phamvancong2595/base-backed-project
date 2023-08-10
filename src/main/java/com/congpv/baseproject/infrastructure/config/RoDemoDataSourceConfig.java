@@ -20,10 +20,10 @@ import javax.sql.DataSource;
 @EnableJpaRepositories(
         entityManagerFactoryRef = "RoDemoEntityManagerFactory",
         transactionManagerRef = "RoDemoTransactionManager",
-        basePackages = {"com.example.demo.repository.read_only"})
+        basePackages = {"com.congpv.baseproject.repository.read_only"})
 public class RoDemoDataSourceConfig extends DataSourceConfig {
     public static final String PERSISTENCE_UNIT_NAME = "RoDemo";
-    public static final String MODEL_PACKAGE = "com.example.demo.repository.entity";
+    public static final String MODEL_PACKAGE = "com.congpv.baseproject.repository.entity";
 
     @Bean(name = "RoDemoDataSource")
     @ConfigurationProperties("spring.datasource-demo-ro")

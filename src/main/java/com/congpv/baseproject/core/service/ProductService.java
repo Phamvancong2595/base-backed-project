@@ -1,27 +1,29 @@
 package com.congpv.baseproject.core.service;
 
 
+import com.congpv.baseproject.application.request.NewProductRequest;
+import com.congpv.baseproject.core.adapter.ProductAdapter;
 import com.congpv.baseproject.core.domain.Product;
-import com.congpv.baseproject.infrastructure.mapper.ProductMapper;
-import com.congpv.baseproject.repository.primary.ProductRepository;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
-@RequiredArgsConstructor
 public class ProductService {
 
-    private final ProductRepository productRepository;
-    private final ProductMapper mapper;
+  private final ProductAdapter productAdapter;
 
-    public void insertNewProduct(Product product) {
-        this.productRepository.save(this.mapper.toEntity(product));
-    }
+  public ProductService(@Qualifier("DefaultProductAdapter") ProductAdapter productAdapter) {
+    this.productAdapter = productAdapter;
+  }
 
-    public List<Product> loadAllProducts() {
-        return productRepository.findAll().stream().map(mapper::toModel).collect(Collectors.toList());
-    }
+  public void insertNewProduct(NewProductRequest request) {
+    Product product = Product.builder().name(request.getName()).price(request.getPrice()).build();
+    this.productAdapter.insertNewProduct(product);
+  }
+
+  public List<Product> loadAllProducts() {
+    return this.productAdapter.loadAllProducts();
+  }
 }
