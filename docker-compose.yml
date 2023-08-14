@@ -1,7 +1,15 @@
 version: "3.8"
 
 services:
-
+  redis:
+    image: 'redis:6.0'
+    container_name: redis-demo
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis-data:/var/lib/redis
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
   mysql:
     image: mysql:8.0
     container_name: mysql-demo

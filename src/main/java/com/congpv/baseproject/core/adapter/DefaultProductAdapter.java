@@ -5,6 +5,7 @@ import com.congpv.baseproject.infrastructure.mapper.ProductMapper;
 import com.congpv.baseproject.repository.primary.ProductRepository;
 import com.congpv.baseproject.repository.read_only.RoProductRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -26,6 +27,7 @@ public class DefaultProductAdapter implements ProductAdapter {
     }
 
     @Override
+    @Cacheable(cacheNames = "productDetails")
     public Product loadProductDetails(Long id) {
         return mapper.toModelV2(roProductRepository.getProductDetailsById(id));
     }
