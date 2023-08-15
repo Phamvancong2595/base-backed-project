@@ -17,7 +17,8 @@ I divided the project into 4 layers:
 - [X] Multiple DataSource Configuration
 - [X] Read/Write Splitting
 - [ ] Caching Local
-- [ ] Swagger
+- [ ] Multiple Cache Manager
+- [X] Swagger
 - [ ] MultiThread
 - [ ] Background Job
 - [ ] Token based Authentication
