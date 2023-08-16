@@ -10,13 +10,13 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
 @EnableSwagger2
-public class SwaggerCfg {
+public class SwaggerConfig {
 
   @Bean
   public Docket api() {
     return new Docket(DocumentationType.SWAGGER_2)
         .select()
-        .apis(RequestHandlerSelectors.basePackage("com.example.demo.application"))
+        .apis(RequestHandlerSelectors.basePackage("com.congpv.baseproject.application"))
         .paths(PathSelectors.any())
         .build();
   }
