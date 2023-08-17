@@ -30,6 +30,7 @@ public class ProductService {
     return this.productAdapter.loadAllProducts();
   }
   public Product loadAllProductDetails(Long id) {
+    log.info(">ProductService.loadProductDetails id = {}", id);
     return this.productAdapter.loadProductDetails(id);
   }
 }
