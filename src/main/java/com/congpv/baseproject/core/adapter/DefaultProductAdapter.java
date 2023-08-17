@@ -1,9 +1,11 @@
 package com.congpv.baseproject.core.adapter;
 
 import com.congpv.baseproject.core.domain.Product;
+import com.congpv.baseproject.infrastructure.exception.ProductNotFoundException;
 import com.congpv.baseproject.infrastructure.mapper.ProductMapper;
 import com.congpv.baseproject.repository.primary.ProductRepository;
 import com.congpv.baseproject.repository.read_only.RoProductRepository;
+import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
@@ -27,8 +29,10 @@ public class DefaultProductAdapter implements ProductAdapter {
     }
 
     @Override
-    @Cacheable(cacheNames = "productDetails")
-    public Product loadProductDetails(Long id) {
-        return mapper.toModelV2(roProductRepository.getProductDetailsById(id));
+    @Cacheable(cacheNames = "productDetails", unless = "#result == null")
+    public Product loadProductDetails(Long id) throws ProductNotFoundException {
+        Product product = mapper.toModelV2(roProductRepository.getProductDetailsById(id));
+        if (Objects.isNull(product)) throw new ProductNotFoundException("Product Not Found");
+        return product;
     }
 }

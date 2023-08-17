@@ -1,9 +1,11 @@
-package com.congpv.baseproject.application;
+package com.congpv.baseproject.application.controller;
 
 import com.congpv.baseproject.application.request.NewProductRequest;
+import com.congpv.baseproject.application.response.FindProductResponse;
 import com.congpv.baseproject.application.response.NewProductResponse;
 import com.congpv.baseproject.core.domain.Product;
 import com.congpv.baseproject.core.service.ProductService;
+import com.congpv.baseproject.infrastructure.exception.ProductNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/v1/products")
 @RequiredArgsConstructor
-public class ProductController extends BaseController {
+public class ProductController {
 
   private final ProductService productService;
 
@@ -24,7 +26,10 @@ public class ProductController extends BaseController {
     return new NewProductResponse("ok");
   }
   @GetMapping(value = "/get_details/{id}")
-  public Product getProductDetails(@PathVariable Long id) {
-    return productService.loadAllProductDetails(id);
+  public FindProductResponse getProductDetails(@PathVariable Long id) throws ProductNotFoundException {
+    return FindProductResponse.builder()
+        .product(productService.loadAllProductDetails(id))
+        .status(true)
+        .build();
   }
 }

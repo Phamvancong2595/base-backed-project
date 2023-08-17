@@ -4,6 +4,7 @@ package com.congpv.baseproject.core.service;
 import com.congpv.baseproject.application.request.NewProductRequest;
 import com.congpv.baseproject.core.adapter.ProductAdapter;
 import com.congpv.baseproject.core.domain.Product;
+import com.congpv.baseproject.infrastructure.exception.ProductNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -29,7 +30,7 @@ public class ProductService {
   public List<Product> loadAllProducts() {
     return this.productAdapter.loadAllProducts();
   }
-  public Product loadAllProductDetails(Long id) {
+  public Product loadAllProductDetails(Long id) throws ProductNotFoundException {
     log.info(">ProductService.loadProductDetails id = {}", id);
     return this.productAdapter.loadProductDetails(id);
   }
