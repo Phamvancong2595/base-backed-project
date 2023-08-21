@@ -16,20 +16,21 @@ I divided the project into 4 layers:
 - [X] Basic REST API
 - [X] Multiple DataSource Configuration
 - [X] Read/Write Splitting
-- [ ] Caching Local
-- [ ] Multiple Cache Manager
+- [X] Caching Local
+- [X] Multiple Cache Manager
 - [X] Token based Authentication
 - [ ] Session based Authentication
 - [X] Swagger
-- [ ] MultiThread
+- [X] MultiThread
 - [ ] Background Job
 - [ ] Authorization
 - [ ] Retry
 - [X] MDC logging
 - [ ] Monitoring with Prometheus
+- [X] Exception handling
 ## Setup:
 - Requirements: MySQL, Redis
-- Update your database config in application.properties
+- Update your database config in **application.properties**
 - Install [Redis Commander](https://github.com/joeferner/redis-commander) which will support you to check your Redis cache
 - Run 'redis-commander --redis-db 10 --redis-password 123' (depends on your db/password config)
 
