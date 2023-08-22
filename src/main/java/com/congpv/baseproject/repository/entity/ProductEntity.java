@@ -1,5 +1,7 @@
 package com.congpv.baseproject.repository.entity;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -17,6 +19,7 @@ import java.time.LocalDateTime;
 public class ProductEntity extends BaseEntity{
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private String name;
