@@ -18,10 +18,11 @@ import org.springframework.web.filter.OncePerRequestFilter;
 @Order(1)
 public class TokenVerifyingFilter extends OncePerRequestFilter {
 
+  //  verify fixed tokens
   private final String VERIFY_TOKEN_HEADER = "Verify-Token";
   @Value("${verified_tokens}")
   private Set<String> tokenSet;
-
+  //verify fixed tokens
   @Override
   protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
       FilterChain filterChain) throws ServletException, IOException {
@@ -35,6 +36,7 @@ public class TokenVerifyingFilter extends OncePerRequestFilter {
       log.error("Invalid token", e);
     }
   }
+
   private boolean verifyToken(Optional<String> token) {
     boolean verified = false;
     if (token.isPresent()) {
@@ -42,9 +44,11 @@ public class TokenVerifyingFilter extends OncePerRequestFilter {
     }
     return verified;
   }
+
   private Optional<String> getRequestToken(HttpServletRequest request) {
     return Optional.ofNullable(request.getHeader(VERIFY_TOKEN_HEADER));
   }
+
   @Override
   protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
     return !request.getRequestURI().startsWith("/api");
