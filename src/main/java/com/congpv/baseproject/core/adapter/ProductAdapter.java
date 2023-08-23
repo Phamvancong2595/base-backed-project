@@ -6,10 +6,11 @@ import com.congpv.baseproject.core.domain.Product;
 import com.congpv.baseproject.infrastructure.exception.ProductNotFoundException;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import org.springframework.data.domain.Pageable;
 
 public interface ProductAdapter {
 
-  List<Product> loadAllProducts();
+  List<Product> loadAllProducts(Pageable paging);
 
   void insertNewProduct(Product product);
 

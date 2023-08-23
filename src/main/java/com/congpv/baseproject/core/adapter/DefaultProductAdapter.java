@@ -13,6 +13,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Pageable;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
@@ -28,8 +29,9 @@ public class DefaultProductAdapter implements ProductAdapter {
   private final ProductMapper mapper;
 
   @Override
-  public List<Product> loadAllProducts() {
-    return roProductRepository.findAll().stream().map(mapper::toModel).collect(Collectors.toList());
+  public List<Product> loadAllProducts(Pageable paging) {
+    return roProductRepository.findAll(paging).stream().map(mapper::toModel)
+        .collect(Collectors.toList());
   }
 
   @Override

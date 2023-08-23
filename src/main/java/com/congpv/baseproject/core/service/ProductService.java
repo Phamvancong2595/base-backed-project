@@ -14,6 +14,9 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -34,8 +37,9 @@ public class ProductService {
     this.productAdapter.insertNewProduct(product);
   }
 
-  public List<Product> loadAllProducts() {
-    return this.productAdapter.loadAllProducts();
+  public List<Product> loadAllProducts(Integer pageNo, Integer pageSize, String sortBy) {
+    Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
+    return this.productAdapter.loadAllProducts(paging);
   }
 
   public Product loadAllProductDetails(Long id) throws ProductNotFoundException {
@@ -51,25 +55,27 @@ public class ProductService {
     }
     List<CompletableFuture<PriceCheckResult>> futures =
         new ArrayList<>(request.getProducts().size());
-    for (Product p: request.getProducts()) {
+    for (Product p : request.getProducts()) {
       CompletableFuture<PriceCheckResult> future =
           this.productAdapter.checkAsyncPrice(p);
       futures.add(future);
     }
     CompletableFuture.allOf(futures.toArray(new CompletableFuture[futures.size()])).join();
     List<PriceCheckResult> results = new ArrayList<>();
-    for (CompletableFuture<PriceCheckResult> future: futures) {
+    for (CompletableFuture<PriceCheckResult> future : futures) {
       results.add(future.get());
     }
     return results;
   }
-  public List<PriceCheckResult> checkPrice(PriceCheckRequest request) throws EmptyRequestException, InterruptedException {
+
+  public List<PriceCheckResult> checkPrice(PriceCheckRequest request)
+      throws EmptyRequestException, InterruptedException {
     log.info("> ProductService.checkPrice{}", request);
     if (Objects.isNull(request.getProducts()) || request.getProducts().isEmpty()) {
       throw new EmptyRequestException();
     }
     List<PriceCheckResult> results = new ArrayList<>();
-    for (Product p: request.getProducts()) {
+    for (Product p : request.getProducts()) {
       results.add(this.productAdapter.checkPrice(p));
     }
     return results;

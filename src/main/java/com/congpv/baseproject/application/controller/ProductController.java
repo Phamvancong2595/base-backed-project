@@ -13,7 +13,9 @@ import com.congpv.baseproject.infrastructure.exception.ProductNotFoundException;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -58,5 +60,15 @@ public class ProductController {
       throws EmptyRequestException, InterruptedException {
     List<PriceCheckResult> results = productService.checkPrice(request);
     return PriceCheckResponse.builder().results(results).msg("Ok").status(true).build();
+  }
+
+  @GetMapping(value = "/get-all")
+  public ResponseEntity<List<Product>> getProductByPrice(
+      @RequestParam(defaultValue = "0") Integer pageNo,
+      @RequestParam(defaultValue = "20") Integer pageSize,
+      @RequestParam(defaultValue = "id") String sortBy
+  ) {
+    List<Product> products = productService.loadAllProducts(pageNo, pageSize, sortBy);
+    return new ResponseEntity<>(products, HttpStatus.OK);
   }
 }
