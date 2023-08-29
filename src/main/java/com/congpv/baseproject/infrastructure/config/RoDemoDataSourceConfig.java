@@ -18,35 +18,36 @@ import javax.sql.DataSource;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-        entityManagerFactoryRef = "RoDemoEntityManagerFactory",
-        transactionManagerRef = "RoDemoTransactionManager",
-        basePackages = {"com.congpv.baseproject.repository.read_only"})
+    entityManagerFactoryRef = "RoDemoEntityManagerFactory",
+    transactionManagerRef = "RoDemoTransactionManager",
+    basePackages = {"com.congpv.baseproject.repository.mysql.read_only"})
 public class RoDemoDataSourceConfig extends DataSourceConfig {
-    public static final String PERSISTENCE_UNIT_NAME = "RoDemo";
-    public static final String MODEL_PACKAGE = "com.congpv.baseproject.repository.entity";
 
-    @Bean(name = "RoDemoDataSource")
-    @ConfigurationProperties("spring.datasource-demo-ro")
-    public DataSource roDataSource() {
-        return DataSourceBuilder.create().build();
-    }
+  public static final String PERSISTENCE_UNIT_NAME = "RoDemo";
+  public static final String MODEL_PACKAGE = "com.congpv.baseproject.repository.mysql.entity";
 
-    @Bean(name = "RoDemoEntityManagerFactory")
-    public LocalContainerEntityManagerFactoryBean roDemoEntityManagerFactory(
-            EntityManagerFactoryBuilder entityManagerFactoryBuilder,
-            @Qualifier("RoDemoDataSource") DataSource dataSource) {
+  @Bean(name = "RoDemoDataSource")
+  @ConfigurationProperties("spring.datasource-demo-ro")
+  public DataSource roDataSource() {
+    return DataSourceBuilder.create().build();
+  }
 
-        return entityManagerFactoryBuilder
-                .dataSource(dataSource)
-                .packages(MODEL_PACKAGE)
-                .properties(JpaAdditionalPropertiesHelper.additionalProperties())
-                .persistenceUnit(PERSISTENCE_UNIT_NAME)
-                .build();
-    }
+  @Bean(name = "RoDemoEntityManagerFactory")
+  public LocalContainerEntityManagerFactoryBean roDemoEntityManagerFactory(
+      EntityManagerFactoryBuilder entityManagerFactoryBuilder,
+      @Qualifier("RoDemoDataSource") DataSource dataSource) {
 
-    @Bean(name = "RoDemoTransactionManager")
-    public PlatformTransactionManager roDemoTransactionManager(
-            @Qualifier("RoDemoEntityManagerFactory") EntityManagerFactory dfEntityManagerFactory) {
-        return new JpaTransactionManager(dfEntityManagerFactory);
-    }
+    return entityManagerFactoryBuilder
+        .dataSource(dataSource)
+        .packages(MODEL_PACKAGE)
+        .properties(JpaAdditionalPropertiesHelper.additionalProperties())
+        .persistenceUnit(PERSISTENCE_UNIT_NAME)
+        .build();
+  }
+
+  @Bean(name = "RoDemoTransactionManager")
+  public PlatformTransactionManager roDemoTransactionManager(
+      @Qualifier("RoDemoEntityManagerFactory") EntityManagerFactory dfEntityManagerFactory) {
+    return new JpaTransactionManager(dfEntityManagerFactory);
+  }
 }

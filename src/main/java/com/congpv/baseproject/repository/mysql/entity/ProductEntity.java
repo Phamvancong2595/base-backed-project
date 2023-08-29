@@ -1,4 +1,4 @@
-package com.congpv.baseproject.repository.entity;
+package com.congpv.baseproject.repository.mysql.entity;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

@@ -11,7 +11,7 @@ public class ShowCurrentTimeSchedule {
 
   private static final DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-  @Scheduled(initialDelay = 1000, fixedDelay = 2000)
+  @Scheduled(initialDelay = 1000, fixedDelay = 2000000000)
   public void showCurrenTime() {
     Date d = new Date();
     System.out.println(df.format(d));

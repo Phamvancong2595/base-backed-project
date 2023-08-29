@@ -22,7 +22,7 @@ I divided the project into 4 layers:
 - [ ] Session based Authentication
 - [X] Swagger
 - [X] MultiThread
-- [ ] Background Job
+- [X] Background Job
 - [ ] Authorization
 - [ ] Retry
 - [X] MDC logging

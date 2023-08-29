@@ -20,7 +20,14 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: congpham
       MYSQL_DATABASE: demo
-
+  mongo:
+    image: mongo
+    container_name: mongo-demo
+    ports:
+      - '27017:27017'
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
 volumes:
   mysql-data:
   redis-data:

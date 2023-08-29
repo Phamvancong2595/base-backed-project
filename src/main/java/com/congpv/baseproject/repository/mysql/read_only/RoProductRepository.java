@@ -1,7 +1,7 @@
-package com.congpv.baseproject.repository.read_only;
+package com.congpv.baseproject.repository.mysql.read_only;
 
-import com.congpv.baseproject.repository.entity.ProductEntity;
-import com.congpv.baseproject.repository.vo.ProductDetailVO;
+import com.congpv.baseproject.repository.mysql.entity.ProductEntity;
+import com.congpv.baseproject.repository.mysql.vo.ProductDetailVO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
