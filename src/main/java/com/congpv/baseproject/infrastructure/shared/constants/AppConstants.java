@@ -1,4 +1,4 @@
-package com.congpv.baseproject.infrastructure.shared;
+package com.congpv.baseproject.infrastructure.shared.constants;
 
 public class AppConstants {
 

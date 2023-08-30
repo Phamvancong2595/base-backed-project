@@ -3,7 +3,7 @@ package com.congpv.baseproject.core.adapter;
 import com.congpv.baseproject.application.response.PriceCheckResult;
 import com.congpv.baseproject.core.domain.Product;
 
-import com.congpv.baseproject.infrastructure.exception.ProductNotFoundException;
+import com.congpv.baseproject.infrastructure.shared.exception.ProductNotFoundException;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import org.springframework.data.domain.Pageable;

@@ -1,6 +1,6 @@
 package com.congpv.baseproject.application.filter;
 
-import com.congpv.baseproject.infrastructure.shared.AppConstants;
+import com.congpv.baseproject.infrastructure.shared.constants.AppConstants;
 import java.io.IOException;
 import java.util.UUID;
 import javax.servlet.FilterChain;

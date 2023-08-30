@@ -1,7 +1,7 @@
 package com.congpv.baseproject.core.service;
 
 import com.congpv.baseproject.core.domain.Post;
-import com.congpv.baseproject.infrastructure.exception.PostNotFoundException;
+import com.congpv.baseproject.infrastructure.shared.exception.PostNotFoundException;
 import com.congpv.baseproject.infrastructure.rest_client.DemoRestClient;
 import java.util.List;
 import lombok.RequiredArgsConstructor;

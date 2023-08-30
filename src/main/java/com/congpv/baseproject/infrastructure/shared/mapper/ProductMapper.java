@@ -1,8 +1,8 @@
-package com.congpv.baseproject.infrastructure.mapper;
+package com.congpv.baseproject.infrastructure.shared.mapper;
 
 import com.congpv.baseproject.core.domain.Product;
-import com.congpv.baseproject.repository.mysql.entity.ProductEntity;
-import com.congpv.baseproject.repository.mysql.vo.ProductDetailVO;
+import com.congpv.baseproject.infrastructure.repository.mysql.entity.ProductEntity;
+import com.congpv.baseproject.infrastructure.repository.mysql.vo.ProductDetailVO;
 import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
 

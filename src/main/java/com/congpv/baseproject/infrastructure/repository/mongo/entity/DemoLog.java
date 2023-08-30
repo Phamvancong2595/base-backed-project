@@ -1,6 +1,6 @@
-package com.congpv.baseproject.repository.mongo.entity;
+package com.congpv.baseproject.infrastructure.repository.mongo.entity;
 
-import com.congpv.baseproject.infrastructure.shared.AppConstants;
+import com.congpv.baseproject.infrastructure.shared.constants.AppConstants;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import java.util.Date;

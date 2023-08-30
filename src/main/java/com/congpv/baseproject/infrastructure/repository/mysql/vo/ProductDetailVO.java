@@ -1,4 +1,4 @@
-package com.congpv.baseproject.repository.mysql.vo;
+package com.congpv.baseproject.infrastructure.repository.mysql.vo;
 
 public interface ProductDetailVO {
     Integer getId();

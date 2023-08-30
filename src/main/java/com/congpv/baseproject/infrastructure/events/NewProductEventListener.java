@@ -1,7 +1,7 @@
 package com.congpv.baseproject.infrastructure.events;
 
-import com.congpv.baseproject.repository.mongo.entity.DemoLog;
-import com.congpv.baseproject.repository.mongo.primary.DemoLogRepository;
+import com.congpv.baseproject.infrastructure.repository.mongo.entity.DemoLog;
+import com.congpv.baseproject.infrastructure.repository.mongo.primary.DemoLogRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;

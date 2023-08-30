@@ -3,7 +3,7 @@ package com.congpv.baseproject.application.controller;
 import com.congpv.baseproject.application.response.PostResponse;
 import com.congpv.baseproject.core.domain.Post;
 import com.congpv.baseproject.core.service.PostService;
-import com.congpv.baseproject.infrastructure.exception.PostNotFoundException;
+import com.congpv.baseproject.infrastructure.shared.exception.PostNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

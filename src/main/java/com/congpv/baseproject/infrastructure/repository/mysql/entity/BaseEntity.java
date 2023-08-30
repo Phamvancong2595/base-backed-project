@@ -1,4 +1,4 @@
-package com.congpv.baseproject.repository.mysql.entity;
+package com.congpv.baseproject.infrastructure.repository.mysql.entity;
 
 import java.io.Serializable;
 

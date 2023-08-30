@@ -6,10 +6,10 @@ built by CongPV
 
 I divided the project into 4 layers:
 
-- **Application**: Rest APIs, passing user input to services
-- **Core**: domain logic, divided into services
-- **Repository**: layer for interaction with models and performing DB operations
-- **Infrastructure**: support 3 higher layers
+    ├── application               # Controllers, passing user input into services respectively
+    ├── domain                    # Domain logic, divided into services
+    ├── infrastructure            # Config, repository, third parties,...
+    └── shared                    # constants, DTO, utils,...
 
 ## Features
 

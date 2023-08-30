@@ -1,4 +1,4 @@
-package com.congpv.baseproject.infrastructure.exception;
+package com.congpv.baseproject.infrastructure.shared.exception;
 
 public class BaseException extends Exception {
   public BaseException( String msg) {
