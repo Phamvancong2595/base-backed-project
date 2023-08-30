@@ -24,13 +24,14 @@ I divided the project into 4 layers:
 - [X] MultiThread
 - [X] Background Job
 - [ ] Authorization
-- [ ] Retry
+- [X] Retry
 - [X] MDC logging
 - [ ] Monitoring with Prometheus
-- [ ] Sentry Integration
+- [X] Sentry Integration
 - [X] Pagination
 - [X] Exception handling
-
+- [X] Event Handling
+- [ ] Distributed Transactions
 ## Setup:
 
 - Requirements: MySQL, Redis
