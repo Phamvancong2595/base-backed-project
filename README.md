@@ -1,4 +1,4 @@
-# Spring Boot - Base Backend Project
+# Spring Boot Based Backend Project
 
 built by CongPV
 
@@ -16,9 +16,10 @@ I divided the project into 4 layers:
 - [X] Basic REST API
 - [X] Multiple DataSource Configuration
 - [X] Read/Write Splitting
-- [X] Caching Local
+- [X] Caching Local with Caffeine
 - [X] Multiple Cache Manager
-- [X] Token based Authentication
+- [X] Fix Token Authentication
+- [ ] JWT Authentication
 - [ ] Session based Authentication
 - [X] Swagger
 - [X] MultiThread
@@ -32,6 +33,8 @@ I divided the project into 4 layers:
 - [X] Exception handling
 - [X] Event Handling
 - [ ] Distributed Transactions
+- [ ] Race Condition Handling
+- [ ] Kafka Producer/Consumer (Json, Avro)
 ## Setup:
 
 - Requirements: MySQL, Redis
