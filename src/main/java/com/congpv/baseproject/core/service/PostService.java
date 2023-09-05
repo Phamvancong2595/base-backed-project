@@ -10,23 +10,7 @@ import org.springframework.retry.annotation.Backoff;
 import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Component;
 
-@Component("PostService")
-@RequiredArgsConstructor
-@Slf4j
-public class PostService {
+public interface PostService {
 
-  private final DemoRestClient demoRestClient;
-
-  @Retryable(
-      value = PostNotFoundException.class,
-      maxAttemptsExpression = "${retry.maxAttempts}",
-      backoff = @Backoff(delayExpression = "${retry.backOffDelay}"))
-  public Post getLastPost() throws PostNotFoundException {
-    List<Post> posts = demoRestClient.getPosts();
-    if (posts.isEmpty()) {
-      log.error("No Posts Found");
-      throw new PostNotFoundException();
-    }
-    return posts.get(0);
-  }
+  Post getLastPost() throws PostNotFoundException;
 }

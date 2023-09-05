@@ -19,7 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/v1/products")
+@RequestMapping("/api/v1/products")
 @RequiredArgsConstructor
 public class ProductController {
 
@@ -38,8 +38,8 @@ public class ProductController {
   public FindProductResponse getProductDetails(@PathVariable Long id)
       throws ProductNotFoundException {
     return FindProductResponse.builder()
-        .product(productService.loadAllProductDetails(id))
-        .status(true)
+        .product(productService.loadProductDetails(id))
+        .success(true)
         .build();
   }
 
@@ -48,7 +48,7 @@ public class ProductController {
   public PriceCheckResponse checkAsyncProductPrice(@RequestBody PriceCheckRequest request)
       throws EmptyRequestException, ExecutionException, InterruptedException {
     List<PriceCheckResult> results = productService.checkAsyncPrice(request);
-    return PriceCheckResponse.builder().results(results).msg("ok").status(true).build();
+    return PriceCheckResponse.builder().results(results).message("ok").success(true).build();
   }
 
   @PostMapping(
@@ -59,7 +59,7 @@ public class ProductController {
   public PriceCheckResponse checkProductPrice(@RequestBody PriceCheckRequest request)
       throws EmptyRequestException, InterruptedException {
     List<PriceCheckResult> results = productService.checkPrice(request);
-    return PriceCheckResponse.builder().results(results).msg("Ok").status(true).build();
+    return PriceCheckResponse.builder().results(results).message("Ok").success(true).build();
   }
 
   @GetMapping(value = "/get-all")
