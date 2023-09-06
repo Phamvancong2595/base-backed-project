@@ -19,38 +19,39 @@ import javax.sql.DataSource;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-        entityManagerFactoryRef = "DemoEntityManagerFactory",
-        transactionManagerRef = "DemoTransactionManager",
-        basePackages = {"com.congpv.baseproject.infrastructure.repository.mysql.primary"})
+    entityManagerFactoryRef = "DemoEntityManagerFactory",
+    transactionManagerRef = "DemoTransactionManager",
+    basePackages = {"com.congpv.baseproject.infrastructure.repository.mysql.primary"})
 public class DemoDataSourceConfig extends DataSourceConfig {
-    public static final String PERSISTENCE_UNIT_NAME = "Demo";
-    public static final String MODEL_PACKAGE = "com.congpv.baseproject.infrastructure.repository.mysql.entity";
 
-    @Bean(name = "DemoDataSource")
-    @Primary
-    @ConfigurationProperties("spring.datasource-demo")
-    public DataSource dataSource() {
-        return DataSourceBuilder.create().build();
-    }
+  public static final String PERSISTENCE_UNIT_NAME = "Demo";
+  public static final String MODEL_PACKAGE = "com.congpv.baseproject.infrastructure.repository.mysql.entity";
 
-    @Bean(name = "DemoEntityManagerFactory")
-    @Primary
-    public LocalContainerEntityManagerFactoryBean demoEntityManagerFactory(
-            EntityManagerFactoryBuilder entityManagerFactoryBuilder,
-            @Qualifier("DemoDataSource") DataSource dataSource) {
+  @Bean(name = "DemoDataSource")
+  @Primary
+  @ConfigurationProperties("spring.datasource-demo")
+  public DataSource dataSource() {
+    return DataSourceBuilder.create().build();
+  }
 
-        return entityManagerFactoryBuilder
-                .dataSource(dataSource)
-                .packages(MODEL_PACKAGE)
-                .properties(JpaAdditionalPropertiesHelper.additionalProperties())
-                .persistenceUnit(PERSISTENCE_UNIT_NAME)
-                .build();
-    }
+  @Bean(name = "DemoEntityManagerFactory")
+  @Primary
+  public LocalContainerEntityManagerFactoryBean demoEntityManagerFactory(
+      EntityManagerFactoryBuilder entityManagerFactoryBuilder,
+      @Qualifier("DemoDataSource") DataSource dataSource) {
 
-    @Bean(name = "DemoTransactionManager")
-    @Primary
-    public PlatformTransactionManager demoTransactionManager(
-            @Qualifier("DemoEntityManagerFactory") EntityManagerFactory dfEntityManagerFactory) {
-        return new JpaTransactionManager(dfEntityManagerFactory);
-    }
+    return entityManagerFactoryBuilder
+        .dataSource(dataSource)
+        .packages(MODEL_PACKAGE)
+        .properties(JpaAdditionalPropertiesHelper.additionalProperties())
+        .persistenceUnit(PERSISTENCE_UNIT_NAME)
+        .build();
+  }
+
+  @Bean(name = "DemoTransactionManager")
+  @Primary
+  public PlatformTransactionManager demoTransactionManager(
+      @Qualifier("DemoEntityManagerFactory") EntityManagerFactory dfEntityManagerFactory) {
+    return new JpaTransactionManager(dfEntityManagerFactory);
+  }
 }

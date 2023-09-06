@@ -10,10 +10,11 @@ import org.springframework.stereotype.Component;
 @Component
 public interface ProductMapper {
 
-    //@Mappings({})
-    ProductEntity toEntity(Product product);
+  //@Mappings({})
+  ProductEntity toEntity(Product product);
 
-    //@Mappings({})
-    Product toModel(ProductEntity entity);
-    Product toModelV2(ProductDetailVO vo);
+  //@Mappings({})
+  Product toModel(ProductEntity entity);
+
+  Product toModelV2(ProductDetailVO vo);
 }

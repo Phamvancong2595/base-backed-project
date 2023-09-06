@@ -13,8 +13,9 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @SpringBootApplication
 @EnableRetry
 public class BaseProjectApplication {
-	public static void main(String[] args) {
-		SpringApplication.run(BaseProjectApplication.class, args);
-	}
+
+  public static void main(String[] args) {
+    SpringApplication.run(BaseProjectApplication.class, args);
+  }
 
 }

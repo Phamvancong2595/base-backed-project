@@ -16,6 +16,7 @@ public class ShowCurrentTimeSchedule {
     Date d = new Date();
     System.out.println(df.format(d));
   }
+
   @Scheduled(cron = "15 * * * * ?", zone = "Asia/Saigon")
   public void doSomethingInEachMinutes() {
     System.out.println("Read a book");

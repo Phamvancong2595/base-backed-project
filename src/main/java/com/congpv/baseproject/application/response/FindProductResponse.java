@@ -8,6 +8,7 @@ import lombok.experimental.SuperBuilder;
 @Data
 @SuperBuilder
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class FindProductResponse extends BaseResponse{
+public class FindProductResponse extends BaseResponse {
+
   private Product product;
 }

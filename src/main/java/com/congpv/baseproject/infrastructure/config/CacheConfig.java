@@ -21,6 +21,7 @@ import org.springframework.data.redis.serializer.RedisSerializationContext;
 
 @Configuration
 public class CacheConfig extends CachingConfigurerSupport implements CachingConfigurer {
+
   private final int CACHE_REDIS_TTL = 60;
   private final int CACHE_LOCAL_TTL = 120;
   public static final String CACHE_REDIS = "CACHE_REDIS";
@@ -35,15 +36,18 @@ public class CacheConfig extends CachingConfigurerSupport implements CachingConf
             RedisSerializationContext.SerializationPair.fromSerializer(
                 new GenericJackson2JsonRedisSerializer()));
   }
+
   @Bean
   public RedisCacheWriter redisCacheWriter(RedisConnectionFactory redisConnectionFactory) {
     return RedisCacheWriter.nonLockingRedisCacheWriter(redisConnectionFactory);
   }
+
   @Bean(name = CACHE_REDIS)
   @Primary
   public RedisCacheManager redisCacheManager(RedisCacheWriter redisCacheWriter) {
     return new RedisCacheManager(redisCacheWriter, buildCacheConfig(CACHE_REDIS_TTL));
   }
+
   @Bean(name = CACHE_LOCAL)
   public CacheManager localCacheManager() {
     CaffeineCacheManager caffeineCacheManager = new CaffeineCacheManager();

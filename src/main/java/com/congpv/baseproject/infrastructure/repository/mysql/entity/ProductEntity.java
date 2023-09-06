@@ -16,17 +16,17 @@ import java.time.LocalDateTime;
 @Table(name = "products")
 @Getter
 @Setter
-public class ProductEntity extends BaseEntity{
+public class ProductEntity extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private long id;
 
-    private String name;
+  private String name;
 
-    private Float price;
+  private Float price;
 
-    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    @CreationTimestamp
-    private LocalDateTime created;
+  @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+  @CreationTimestamp
+  private LocalDateTime created;
 }

@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/posts")
 @RequiredArgsConstructor
 public class PostController extends BaseController {
+
   private final PostService postService;
+
   @GetMapping(value = "/get-last")
   public PostResponse getLastPost() throws PostNotFoundException {
     Post post = postService.getLastPost();

@@ -10,6 +10,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @JsonInclude(Include.NON_NULL)
 public class PostResponse extends BaseResponse {
+
   private Post post;
 
 }

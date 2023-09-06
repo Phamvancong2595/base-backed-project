@@ -16,6 +16,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 @Builder
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class DemoLog {
+
   @Field("request_id")
   @Indexed(name = "request_id_index")
   private String requestId;
