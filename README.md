@@ -19,7 +19,7 @@ I divided the project into 4 layers:
 - [X] Caching Local with Caffeine
 - [X] Multiple Cache Manager
 - [X] Fix Token Authentication
-- [ ] JWT Authentication
+- [X] JWT Authentication
 - [ ] Session based Authentication
 - [X] Swagger
 - [X] MultiThread

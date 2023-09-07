@@ -1,5 +1,8 @@
 package com.congpv.baseproject.application.filter;
 
+import com.congpv.baseproject.core.service.UserService;
+import com.congpv.baseproject.infrastructure.config.auth.CustomUserDetails;
+import com.congpv.baseproject.infrastructure.shared.constants.AppConstants;
 import java.io.IOException;
 import java.util.Optional;
 import java.util.Set;
@@ -8,20 +11,22 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.annotation.Order;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-@Component
-@Slf4j
-@Order(1)
-public class TokenVerifyingFilter extends OncePerRequestFilter {
+public class VerifyFixedTokenFilter extends OncePerRequestFilter {
 
   //  verify fixed tokens
-  private final String VERIFY_TOKEN_HEADER = "Verify-Token";
   @Value("${verified_tokens}")
   private Set<String> tokenSet;
+  @Autowired
+  private UserService userService;
 
   //verify fixed tokens
   @Override
@@ -29,13 +34,16 @@ public class TokenVerifyingFilter extends OncePerRequestFilter {
       FilterChain filterChain) throws ServletException, IOException {
     try {
       if (verifyToken(getRequestToken(request))) {
-        filterChain.doFilter(request, response);
-      } else {
-        response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+        CustomUserDetails user = userService.loadDefaultUserForFixedTokenAuth();
+        UsernamePasswordAuthenticationToken authentication =
+            new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
+        authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+        SecurityContextHolder.getContext().setAuthentication(authentication);
       }
-    } catch (IOException e) {
-      log.error("Invalid token", e);
+    } catch (Exception e) {
+      logger.error("Invalid fixed token", e);
     }
+    filterChain.doFilter(request, response);
   }
 
   private boolean verifyToken(Optional<String> token) {
@@ -47,7 +55,7 @@ public class TokenVerifyingFilter extends OncePerRequestFilter {
   }
 
   private Optional<String> getRequestToken(HttpServletRequest request) {
-    return Optional.ofNullable(request.getHeader(VERIFY_TOKEN_HEADER));
+    return Optional.ofNullable(request.getHeader(AppConstants.FIX_TOKEN_HEADER));
   }
 
   @Override
