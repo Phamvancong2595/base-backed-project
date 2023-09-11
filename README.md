@@ -45,5 +45,5 @@ I divided the project into 4 layers:
 
 ## Notes:
 
-- Check your swagger: http://localhost:8088/swagger-ui.html
+- Check your swagger: - Check your swagger: http://localhost:8088/swagger-ui/index.html#/
 - Redis Commander UI: http://127.0.0.1:8081

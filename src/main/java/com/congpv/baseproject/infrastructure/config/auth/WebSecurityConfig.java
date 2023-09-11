@@ -26,7 +26,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
       "/",
       "/api/login",
       // -- API document
-      "/swagger-ui.html#/**",
+      "/swagger-ui/**",
       "/v3/api-docs/**",
       // -- Prometheus
       "/actuator/**"

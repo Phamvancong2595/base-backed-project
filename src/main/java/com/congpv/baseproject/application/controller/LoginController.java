@@ -8,6 +8,7 @@ import com.congpv.baseproject.infrastructure.config.auth.CustomUserDetails;
 import com.congpv.baseproject.infrastructure.config.auth.JwtTokenProvider;
 import com.congpv.baseproject.infrastructure.shared.constants.AppConstants;
 import com.congpv.baseproject.infrastructure.shared.utils.EncryptedPasswordUtils;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,6 +18,7 @@ import java.util.Objects;
 
 @RestController
 @RequestMapping("/api")
+@Tag(name = "Login Controller")
 @RequiredArgsConstructor
 public class LoginController {
 
