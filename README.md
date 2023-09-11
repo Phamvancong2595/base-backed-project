@@ -27,7 +27,7 @@ I divided the project into 4 layers:
 - [ ] Authorization
 - [X] Retry
 - [X] MDC logging
-- [ ] Monitoring with Prometheus
+- [X] Monitoring with Prometheus
 - [X] Sentry Integration
 - [X] Pagination
 - [X] Exception handling
